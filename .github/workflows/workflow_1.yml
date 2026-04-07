@@ -1,0 +1,22 @@
+name: workflow_1
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Clonamos el repositorio
+      - uses: actions/checkout@v3
+      # Instalamos Node.js
+      - uses: actions/setup-node@v3
+      # Instalamos dependencias
+      - run: npm install
+      # Ejecutamos el linter
+      - run: npm run lint
+      # Ejecutamos las pruebas
+      # los pasos pueden tener un nombre, esto ayuda con la depuración
+      # el nombre se muestra en Github al revisar la compilación
+      - name: run tests
+        run: npm test
