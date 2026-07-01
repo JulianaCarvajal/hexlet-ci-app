@@ -15,7 +15,7 @@ jobs:
           node-version: 18
           cache: 'npm'
       # Instalamos dependencias
-      - run: npm install
+      - run: npm ci
       # Ejecutamos el linter
       - run: npm run lint
       # Ejecutamos las pruebas
