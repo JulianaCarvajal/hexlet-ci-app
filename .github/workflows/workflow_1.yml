@@ -8,9 +8,12 @@ jobs:
 
     steps:
       # Clonamos el repositorio
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       # Instalamos Node.js
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: 'npm'
       # Instalamos dependencias
       - run: npm install
       # Ejecutamos el linter
@@ -20,3 +23,8 @@ jobs:
       # el nombre se muestra en Github al revisar la compilación
       - name: run tests
         run: npm test
+
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
